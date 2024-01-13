@@ -1,0 +1,4 @@
+1- Create a repo
+2- Create a .github folder
+3- create workflows folder
+4- create yaml files for your workflows
