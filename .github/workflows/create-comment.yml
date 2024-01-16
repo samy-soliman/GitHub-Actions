@@ -7,38 +7,28 @@ jobs: # workflow jobs
   test-comment-from-action:
     runs-on: ubuntu-latest
     steps:
-        - name: Create comment from action
-          uses: peter-evans/create-or-update-comment@v3
-          with:
-            issue-number: ${{ github.event.issue.number }}
-            body: |
-              This is a multi-line test comment
-              - With GitHub **Markdown** :sparkles:
-              - Created by [create-or-update-comment][1]
-            reactions: '+1'
+      - name: Create comment from action
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
+          reactions: '+1'
   test-comment-from-api:
     runs-on: ubuntu-latest
     steps:
-        - name: Create comment from api
-          run: |
-            gh api \
-            --method POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            /repos/${OWNER}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
-            -f body='Comment From API'
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # To use github cli we need it set
-            ISSUE_NUMBER: ${{ github.event.issue.number }}
-            REPOSITORY: ${{ github.event.repository.name }}
-            OWNER: ${{ github.event.repository.owner }}
-
-        #   run: |
-        #     gh api -X POST \
-        #     http://api.github.com/repo/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
-        #     -f body=' Comment From API '
-        #   env:
-        #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # To use github cli we need it set
-        #     ORGANIZATION: ${{ github.event.organization.login }}
-        #     REPOSITORY: ${{ github.event.repository.name }}
-        #     ISSUE_NUMBER: ${{ github.event.issue.number }}
+      - name: Create comment from api
+        run: |
+          gh api \
+          --method POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          /repos/${OWNER}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
+          -f body='Comment From API'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # To use github cli we need it set
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          REPOSITORY: ${{ github.event.repository.name }}
+          OWNER: ${{ github.event.repository.owner }}
