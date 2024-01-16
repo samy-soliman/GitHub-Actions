@@ -1,13 +1,13 @@
 name: create-comment-on-issue # GitHub Actions workflow name
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: ${{ github.actor }} is Testing Create Comment on Issue
 on:
   issues:
     types: [opened]
 jobs: # workflow jobs
-  test-comment:
+  test-comment-from-action:
     runs-on: ubuntu-latest
     steps:
-        - name: Create comment
+        - name: Create comment from action
           uses: peter-evans/create-or-update-comment@v3
           with:
             issue-number: ${{ github.event.issue.number }}
@@ -16,3 +16,16 @@ jobs: # workflow jobs
               - With GitHub **Markdown** :sparkles:
               - Created by [create-or-update-comment][1]
             reactions: '+1'
+  test-comment-from-api:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Create comment from api
+          run: |
+            gh api -X POST \
+            http://api.github.com/repo/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
+            -f body=' Comment From API '
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            ORGANIZATION: ${{ github.event.organization.login }}
+            REPOSITORY: ${{ github.event.repository.name }}
+            ISSUE_NUMBER: ${{ github.event.issue.number }}
