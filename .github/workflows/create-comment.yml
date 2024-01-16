@@ -23,6 +23,7 @@ jobs: # workflow jobs
           run: |
             gh api repos/:owner/:repo/issues/$ISSUE_NUMBER/comments --input - <<< '{"body":"Thanks for opening this issue!"}'
           env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # To use github cli we need it set
             ISSUE_NUMBER: ${{ github.event.issue.number }}
 
         #   run: |
