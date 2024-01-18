@@ -1,6 +1,8 @@
 name: print-event-context # GitHub Actions workflow name
 run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+on:
+  issues:
+    types: [opened]
 jobs: # workflow jobs
   test-print-event:
     runs-on: ubuntu-latest

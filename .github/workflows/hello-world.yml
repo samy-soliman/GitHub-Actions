@@ -1,26 +1,34 @@
-# name: hello-world-workflow # GitHub Actions workflow name
-# run-name: ${{ github.actor }} is learning GitHub Actions
-# on:
-#     push:
-#         branches: 
-#             - main
-#     pull_request: 
-#         branches:
-#             - main
-#     workflow_dispatch: 
+name: hello-world-workflow # GitHub Actions workflow name
+run-name: ${{ github.actor }} is learning GitHub Actions
+on:
+    push:
+        branches: 
+            - main
+        paths-ignore:
+            - 'Images/**'
+            - key-points**
+            - project-structure**
+    pull_request: 
+        branches:
+            - main
+        paths-ignore:
+            - 'Images/**'
+            - key-points**
+            - project-structure**
+    workflow_dispatch: 
 
-# jobs: # workflow jobs
-#     hello:
-#         runs-on: ubuntu-latest
-#         steps:
-#             - uses: actions/checkout@v4
-#             - name: hello world
-#               run: echo "Hello World"
-#               shell: bash
+jobs: # workflow jobs
+    hello:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: hello world
+              run: echo "Hello World"
+              shell: bash
     
-#     goodbye:
-#         runs-on: ubuntu-latest
-#         steps:
-#             - name: goodbye world
-#               run: echo "GoodBye World"
-#               shell: bash
+    goodbye:
+        runs-on: ubuntu-latest
+        steps:
+            - name: goodbye world
+              run: echo "GoodBye World"
+              shell: bash

@@ -1,13 +1,18 @@
-# name: learn-github-actions # GitHub Actions workflow name
-# run-name: ${{ github.actor }} is learning GitHub Actions
-# on: [push]
-# jobs: # workflow jobs
-#   check-bats-version:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v4
-#       - uses: actions/setup-node@v3
-#         with:
-#           node-version: '14'
-#       - run: npm install -g bats
-#       - run: bats -v
+name: learn-github-actions # GitHub Actions workflow name
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: #[push]
+  push: 
+    paths-ignore:
+        - 'Images/**'
+        - key-points**
+        - project-structure**
+jobs: # workflow jobs
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm install -g bats
+      - run: bats -v

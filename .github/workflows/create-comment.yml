@@ -28,7 +28,7 @@ jobs: # workflow jobs
             /repos/${REPO_OWNER}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
             -f body='Comment From API'
         env:
-            REPO_OWNER: ${{ github.repository_owner  }}
+            REPO_OWNER: ${{ github.repository_owner }}
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # To use github cli we need it set
             ISSUE_NUMBER: ${{ github.event.issue.number }}
             REPOSITORY: ${{ github.event.repository.name }}
