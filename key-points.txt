@@ -4,4 +4,19 @@
     - we can also specify a specific branch
 3- use paths-ignore
 4- git commit -m "[skip workflow_name]"
-5- 
+5- steps.check.outputs
+6- chashing ci dependences
+7- rsync tool
+8- protected main branch, Branch protection rule , Require a pull request before merging , Require status checks to pass before merging
+9- review on deploying to ENV
+10- code quality provides vulnerabilities scanning
+11- 
+-----------------
+CI
+1. CI steps = Build -> test -> Lint -> security
+2. Pull Request -> trigger ci steps -> Staging ENV for QA test
+3. IF everything is ok -> Pull Request to  main branch -> Test CI steps again after merging to test that everything is ok
+4. we do so because some features could have happened to the main branch
+5. if everything is ok we apply the PR to main and we can mark it as a release.
+6. trigger on PR to main VS push to main ( PR changes only , PR + main).
+7. 
