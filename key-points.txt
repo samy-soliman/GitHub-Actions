@@ -10,7 +10,8 @@
 8- protected main branch, Branch protection rule , Require a pull request before merging , Require status checks to pass before merging
 9- review on deploying to ENV
 10- code quality provides vulnerabilities scanning
-11- 
+11- tmate tool
+12- Environments , we can require auth
 -----------------
 CI
 1. CI steps = Build -> test -> Lint -> security
@@ -19,4 +20,13 @@ CI
 4. we do so because some features could have happened to the main branch
 5. if everything is ok we apply the PR to main and we can mark it as a release.
 6. trigger on PR to main VS push to main ( PR changes only , PR + main).
+7. 
+-----------------
+CD
+1. The CD pipeline is simple in terms of its goal which is to deploy resources.
+2. it can be complex depending on our deploy strategy, so it up to you.
+3. if PR CI fails that does not remove the PR.
+4. staging env workflow is manually triggerd, takes an input for PR number.
+5. staging env workflow comments on our PR with the result of creating the staging env with an attached url.
+6. every PR gets a staging env and when merging to main we make another staging also, before going to production.
 7. 
